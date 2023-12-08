@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:startDestination="@id/menuFragment">
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.myapplication.MenuFragment"
+        android:label="login fragment"
+        tools:layout="@layout/fragment_menu">
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@+id/homeFragment">
+            <argument
+                android:name="calculation"
+                android:defaultValue="Andy"
+                app:argType="string" />
+        </action>
+
+        <action
+            android:id="@+id/action_menu_to_count_number"
+            app:destination="@+id/countNumberFragment">
+        </action>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.myapplication.HomeFragment"
+        android:label="login fragment"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/countNumberFragment"
+        android:name="com.example.myapplication.CountNumberFragment"
+        android:label="login fragment"
+        tools:layout="@layout/fragment_count_number" />
+
+</navigation>
