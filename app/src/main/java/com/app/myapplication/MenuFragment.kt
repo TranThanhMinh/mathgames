@@ -1,9 +1,6 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.security.keystore.KeyGenParameterSpec
-import android.security.keystore.KeyProperties
-import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,26 +12,18 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.app.myapplication.R
 import com.dn.vdp.coloring_book.utils.Utils
-import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
-import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.play.core.install.model.AppUpdateType
-import com.google.android.play.core.install.model.UpdateAvailability
-import com.google.android.play.core.ktx.startUpdateFlowForResult
-import java.security.KeyPair
-import java.security.KeyPairGenerator
-import java.security.KeyStore
-import java.security.PrivateKey
-import javax.crypto.Cipher
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 
 class MenuFragment:Fragment() {
-    private val MY_REQUEST_CODE = 100
-    lateinit var interstitialAd: InterstitialAd
     lateinit var adRequest: AdRequest
+    private final var TAG = "MainActivity"
+    private var mInterstitialAd: InterstitialAd? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -81,41 +70,28 @@ class MenuFragment:Fragment() {
 
     }
 
-    fun adUnitIdInter(){
-        // on below line we are
-        // initializing our interstitial ad.
-        interstitialAd = InterstitialAd(requireContext())
 
-        // on below line we are setting ad
-        // unit id for our interstitial ad.
-        interstitialAd.adUnitId = Utils.adUnitIdInter
 
-        // on below line we are loading
-        // our ad with ad request
-        interstitialAd.loadAd(adRequest)
-
-        // on below line we are setting ad
-        // listener for our interstitial ad.
-        interstitialAd.adListener = object : AdListener() {
-            override fun onAdLoaded() {
-                // on below line we are calling display
-                // ad function to display interstitial ad.
-                displayInterstitialAd(interstitialAd)
+    private fun adUnitIdInter(){
+        InterstitialAd.load(requireContext(),Utils.adUnitIdInter, adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                adError?.toString()?.let { Log.d(TAG, it) }
+                mInterstitialAd = null
             }
-        }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                Log.d(TAG, "Ad was loaded.")
+                mInterstitialAd = interstitialAd
+                if (mInterstitialAd != null) {
+                    mInterstitialAd?.show(requireActivity())
+                } else {
+                    Log.d("TAG", "The interstitial ad wasn't ready yet.")
+                }
+            }
+        })
     }
 
-    // on below line we are creating a
-// function for displaying interstitial ad.
-    private fun displayInterstitialAd(interstitialAd: InterstitialAd) {
-        // on below line we are
-        // checking if the ad is loaded
-        if (interstitialAd.isLoaded) {
-            // if the ad is loaded we are displaying
-            // interstitial ad by calling show method.
-            interstitialAd.show()
-        }
-    }
+
 
     private fun navigate(action: NavDirections) {
         findNavController()?.navigate(action)
