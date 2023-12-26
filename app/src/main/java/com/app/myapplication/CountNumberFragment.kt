@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Recycler
 import com.app.myapplication.Question
 import com.app.myapplication.R
+import com.app.myapplication.adapter.ListCountNumberAdapter
 import com.app.myapplication.adapter.ListMathAdapter
 import java.lang.Math.random
 import kotlin.random.Random
@@ -41,6 +42,7 @@ class CountNumberFragment : Fragment(), OnClickListener {
     var tv_question: TextView? = null
     var imgView: ImageView? = null
     var kq = 0
+    var question :Question?=null
     var mCount = 1
     var one = 0
     var two = 0
@@ -50,7 +52,7 @@ class CountNumberFragment : Fragment(), OnClickListener {
     var listQuestion: ArrayList<Question>? = ArrayList()
     var mCalculation = ""
     var mType = ""
-    var listMathAdapter: ListMathAdapter? = null
+    var listCountNumberAdapter: ListCountNumberAdapter? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -82,6 +84,7 @@ class CountNumberFragment : Fragment(), OnClickListener {
     }
 
     fun setData() {
+        listQuestion!!.add(Question("How many dairy cows are there in the picture??", 1, R.drawable.conbo))
         listQuestion!!.add(Question("How many chickens are there in the picture?", 5, R.drawable.ic_conga))
         listQuestion!!.add(Question("How many deer are there in the picture?", 4, R.drawable.conhuu))
         listQuestion!!.add(Question("How many bees are there in the picture?", 3, R.drawable.conong))
@@ -111,10 +114,10 @@ class CountNumberFragment : Fragment(), OnClickListener {
         randomList = s.toList()
 
         val index = (1 until listQuestion!!.size).random()
-        val  question = listQuestion!![index]
-        kq = question.number
-        tv_question!!.text = question.mQuestion
-        imgView?.setImageDrawable(resources.getDrawable(question.image))
+        question = listQuestion!![index]
+        kq = question!!.number
+        tv_question!!.text = question!!.mQuestion
+        imgView?.setImageDrawable(resources.getDrawable(question!!.image))
         tv_a?.setText((kq + randomList!![0]).toString())
         tv_b?.setText((kq + randomList!![1]).toString())
         tv_c?.setText((kq + randomList!![2]).toString())
@@ -199,8 +202,8 @@ class CountNumberFragment : Fragment(), OnClickListener {
     private fun checkCorrect(number: Int): Boolean {
         val check = number == kq
         if (check) {
-            listMath?.add("$one $mCalculation $two = $number")
-        } else listMath?.add("$one $mCalculation $two = $number (correct: $kq)")
+            listMath?.add("${question!!.image},$number")
+        } else listMath?.add("${question!!.image},$number (correct: $kq)")
         return check
     }
 
@@ -231,10 +234,10 @@ class CountNumberFragment : Fragment(), OnClickListener {
         dialog.setContentView(R.layout.custom_dialog)
         val list_math = dialog.findViewById(R.id.list_math) as RecyclerView
         val img_close = dialog.findViewById(R.id.img_close) as ImageView
-        listMathAdapter = ListMathAdapter(listMath!!)
+        listCountNumberAdapter = ListCountNumberAdapter(requireContext(),listMath!!)
         val layout = LinearLayoutManager(requireContext())
         list_math.layoutManager = layout
-        list_math.adapter = listMathAdapter
+        list_math.adapter = listCountNumberAdapter
 
         img_close.setOnClickListener {
             dialog.dismiss()

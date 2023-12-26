@@ -16,7 +16,7 @@ class ListCountNumberAdapter(val context: Context,val list: ArrayList<String>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_math, parent, false)
+            .inflate(R.layout.item_count_number, parent, false)
         return ViewHolder(view)
     }
 
@@ -26,8 +26,8 @@ class ListCountNumberAdapter(val context: Context,val list: ArrayList<String>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position].split(",")
-        holder.imgView.setImageDrawable(context.resources.getDrawable(R.drawable.lacda))
-        holder.tv_math.text = item[0]
+        holder.imgView.setImageDrawable(context.resources.getDrawable(item[0].toInt()))
+        holder.tv_math.text = item[1]
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

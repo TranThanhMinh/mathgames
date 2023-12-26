@@ -160,24 +160,24 @@
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/fragment_menu_5dp"
-                android:background="@drawable/border_button_next"
+                android:background="@drawable/bg_click_next"
                 android:fontFamily="@font/best"
                 android:gravity="center"
                 android:padding="@dimen/fragment_menu_5dp"
                 android:text="VIEW"
-                android:textColor="@color/gray_1"
+                android:textColor="@color/teal_700"
                 android:visibility="visible" />
 
             <TextView
                 android:id="@+id/img_next"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/border_button_next"
+                android:background="@drawable/bg_click_next"
                 android:fontFamily="@font/best"
                 android:gravity="center"
                 android:padding="@dimen/fragment_menu_5dp"
                 android:text="NEXT"
-                android:textColor="@color/gray_1"
+                android:textColor="@color/teal_700"
                 android:visibility="visible" />
 
             <TextView
@@ -185,12 +185,12 @@
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/fragment_menu_5dp"
-                android:background="@drawable/border_button_next"
+                android:background="@drawable/bg_click_next"
                 android:fontFamily="@font/best"
                 android:gravity="center"
                 android:padding="@dimen/fragment_menu_5dp"
                 android:text="HOME"
-                android:textColor="@color/gray_1"
+                android:textColor="@color/teal_700"
                 android:visibility="visible" />
         </LinearLayout>
     </LinearLayout>

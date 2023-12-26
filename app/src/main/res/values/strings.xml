@@ -4,6 +4,6 @@
     <string name="txt_multiply_divide">Multiply and Divide</string>
     <string name="txt_Math">MATH</string>
     <string name="txt_game">GAME</string>
-    <string name="txt_history">List of completed math</string>
+    <string name="txt_history">List of completed</string>
     <string name="txt_count_number">Count Number</string>
 </resources>
