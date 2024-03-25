@@ -16,4 +16,6 @@
     <dimen name="fragment_menu_60dp">60dp</dimen>
     <dimen name="fragment_menu_35sp">35sp</dimen>
     <dimen name="fragment_menu_16sp">16sp</dimen>
+    <dimen name="fragment_menu_10sp">10sp</dimen>
+    <dimen name="fragment_menu_1dp">1dp</dimen>
 </resources>

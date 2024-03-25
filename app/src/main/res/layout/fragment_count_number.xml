@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/fragment_menu_10dp"
                 android:fontFamily="@font/best"
-                android:text="0/50"
+                android:text="0/100"
                 android:textColor="@color/white"
                 android:textSize="40sp" />
         </LinearLayout>

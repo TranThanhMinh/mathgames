@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.app.mathgames
 
 import android.app.Dialog
 import android.os.Bundle
@@ -12,15 +12,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
+import com.app.mathgames.adapter.ListMathAdapter
 import com.app.myapplication.R
-import com.app.myapplication.adapter.ListMathAdapter
-import java.lang.Math.random
-import kotlin.random.Random
+
 
 class HomeFragment : Fragment(), OnClickListener {
     var tv_number_one: TextView? = null
@@ -242,7 +238,7 @@ class HomeFragment : Fragment(), OnClickListener {
 
 
     private fun customDiaLog() {
-        val dialog = Dialog(requireContext())
+        val dialog = Dialog(requireContext(), android.R.style.Theme_Black_NoTitleBar_Fullscreen)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.custom_dialog)

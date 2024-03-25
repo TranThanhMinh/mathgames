@@ -1,15 +1,14 @@
-package com.example.myapplication
+package com.app.mathgames
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.app.myapplication.R
+
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
-import com.google.android.play.core.ktx.startUpdateFlowForResult
 
 class MainActivity: AppCompatActivity() {
     var navHostFragment:NavHostFragment?=null

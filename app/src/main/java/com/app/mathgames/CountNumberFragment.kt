@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.app.mathgames
 
 import android.app.Dialog
 import android.os.Bundle
@@ -12,17 +12,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
-import com.app.myapplication.Question
+import com.app.mathgames.adapter.ListCountNumberAdapter
 import com.app.myapplication.R
-import com.app.myapplication.adapter.ListCountNumberAdapter
-import com.app.myapplication.adapter.ListMathAdapter
-import java.lang.Math.random
-import kotlin.random.Random
+
 
 class CountNumberFragment : Fragment(), OnClickListener {
     var tv_number_one: TextView? = null
@@ -89,7 +83,6 @@ class CountNumberFragment : Fragment(), OnClickListener {
         listQuestion!!.add(Question("How many deer are there in the picture?", 4, R.drawable.conhuu))
         listQuestion!!.add(Question("How many bees are there in the picture?", 3, R.drawable.conong))
         listQuestion!!.add(Question("How many elephants are there in the picture?", 6, R.drawable.convoi))
-     //   listQuestion!!.add(Question("Hỏi có bao nhiêu con gà trong hình?", 6, R.drawable.hinh1))
         listQuestion!!.add(Question("How many ducks are there in the picture?", 7, R.drawable.hinh2))
         listQuestion!!.add(Question("How many storks are there in the picture?", 10, R.drawable.hinh3))
         listQuestion!!.add(Question("How many ducks are there in the picture?", 8, R.drawable.hinh4))
@@ -99,6 +92,8 @@ class CountNumberFragment : Fragment(), OnClickListener {
         listQuestion!!.add(Question("How many rhinos are there in the picture?", 9, R.drawable.tegiac))
         listQuestion!!.add(Question("How many cars are there in the picture?", 9, R.drawable.xeoto))
         listQuestion!!.add(Question("How many cars are there in the picture?", 10, R.drawable.xeoto2))
+        listQuestion!!.add(Question("How many apple are there in the picture?", 9, R.drawable.tao))
+        listQuestion!!.add(Question("How many guava are there in the picture?", 2, R.drawable.guava))
 
     }
 
@@ -138,7 +133,7 @@ class CountNumberFragment : Fragment(), OnClickListener {
         tv_b?.setBackground(resources.getDrawable(R.drawable.border_button))
         tv_c?.setBackground(resources.getDrawable(R.drawable.border_button))
         tv_d?.setBackground(resources.getDrawable(R.drawable.border_button))
-        tv_count?.text = "$mCount/5"
+        tv_count?.text = "$mCount/10"
     }
 
     fun onBackPressed() {
@@ -212,7 +207,7 @@ class CountNumberFragment : Fragment(), OnClickListener {
         tv_b?.setOnClickListener(null)
         tv_c?.setOnClickListener(null)
         tv_d?.setOnClickListener(null)
-        if (mCount < 5)
+        if (mCount < 10)
             img_next?.visibility = View.VISIBLE
         else {
             Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
@@ -228,7 +223,7 @@ class CountNumberFragment : Fragment(), OnClickListener {
 
 
     private fun customDiaLog() {
-        val dialog = Dialog(requireContext())
+        val dialog = Dialog(requireContext(), android.R.style.Theme_Black_NoTitleBar_Fullscreen)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.custom_dialog)

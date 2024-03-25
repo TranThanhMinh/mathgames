@@ -1,4 +1,4 @@
-package com.app.myapplication
+package com.app.mathgames
 
 import org.junit.Test
 
